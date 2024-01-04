@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.logingrupp5.logingrupp5.model.User;
 import com.logingrupp5.logingrupp5.repository.UserRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -23,17 +24,14 @@ public class UserController {
 
     @GetMapping("/register")
     public String registerUser() {
-        return "/register";
+        return "register";
     }
     
-
     @PostMapping("/register/new-user")
-    public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("email") String email) {
+    public String registerUser(@ModelAttribute("user") User user) {
         System.out.println("saved!!!!!!!!!!!!!!!!!!!!!!");
-        User user = new User(firstName, lastName, email, username, password);
         userRepository.save(user);
 
         return "redirect:/";
-
     }
 }

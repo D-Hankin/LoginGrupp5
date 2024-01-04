@@ -19,14 +19,6 @@ public class User {
 
     public User() {}
 
-    public User(String firstName, String lastName, String email, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-    }
-
     public int getId() {
         return id;
     }

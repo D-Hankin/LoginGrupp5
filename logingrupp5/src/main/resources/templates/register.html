@@ -6,12 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="post" th:action="@{/register/new-user}">
-        <input placeholder="Username" name="username">
-        <input placeholder="Password" name="password">
-        <input placeholder="First Name" name="firstName">
-        <input placeholder="Last Name" name="lastName">
-        <input placeholder="Email" name="email">
+    <form method="post" th:action="@{/register/new-user}" th:object="${user}">
+        <input placeholder="First Name" th:field="*{firstName}">
+        <input placeholder="Last Name" th:field="*{lastName}">
+        <input placeholder="Email" th:field="*{email}">
+        <input placeholder="Username" th:field="*{username}">
+        <input placeholder="Password" th:field="*{password}">
         <button type="submit">Submit</button>
     </form>
 </body>
