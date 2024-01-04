@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" th:action="@{/register/new-user}">
+        <input placeholder="Username" name="username">
+        <input placeholder="Password" name="password">
+        <input placeholder="First Name" name="firstName">
+        <input placeholder="Last Name" name="lastName">
+        <input placeholder="Email" name="email">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
