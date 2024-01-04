@@ -3,8 +3,8 @@ Content-Type: application/json
 
 {
     "email": "david@david.com",
-    "first_name": "David",
-    "last_name": "Hankin",
+    "firstName": "David",
+    "lastName": "Hankin",
     "password": "123456",
     "username": "david86"
 }
