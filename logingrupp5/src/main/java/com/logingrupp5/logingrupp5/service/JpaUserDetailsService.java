@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.logingrupp5.logingrupp5.model.UserDto;
 import com.logingrupp5.logingrupp5.repository.UserRepository;
 
 @Service
@@ -20,8 +21,9 @@ public class JpaUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
-
-        throw new UnsupportedOperationException("Unimplemented method 'loadUserByUsername'");
+        return userRepository.findByUsername(username)
+            .map(UserDto::new)
+            .orElseThrow(() -> new UsernameNotFoundException("No user found"));
     }
     
 }
