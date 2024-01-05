@@ -1,7 +1,9 @@
 package com.logingrupp5.logingrupp5.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.logingrupp5.logingrupp5.model.User;
@@ -16,27 +18,47 @@ public class UserController {
     @Autowired
     private final UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
+
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @GetMapping("/register")
     public String registerUser() {
+
         return "/register";
     }
 
     @PostMapping("/register/new-user")
-    public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("email") String email) {
-        System.out.println("saved!!!!!!!!!!!!!!!!!!!!!!");
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setFirstName(firstName);
-        user.setLastName(lastName);
-        user.setEmail(email);
-        userRepository.save(user);
+    public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("email") String email, Model model) {
+        
+        if (username.trim().isEmpty() || password.trim().isEmpty() || firstName.trim().isEmpty() || lastName.trim().isEmpty() || email.trim().isEmpty()) {
+            
+            model.addAttribute("error", "OOPS! You need to fill in all the fields. Please try again!");
+            
+            return "register";
+            
+        } else {
+            User user = new User();
+            String encryptedPassword = bcryptEncoder.encode(password);
+            user.setUsername(username);
+            user.setPassword(encryptedPassword);
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setEmail(email);
+            userRepository.save(user);
+            
+            return "redirect:/";
+        }
+    }
+    
+    @GetMapping("/error")
+    public String errorPage(Model model) {
+         
+        model.addAttribute("error", "OOPS! An error has occurred. Go back and try again!");
 
-        return "redirect:/";
-
+        return "redirect:/register";
     }
 }
