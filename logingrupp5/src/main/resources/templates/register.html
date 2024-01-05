@@ -1,18 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Login Grupp 5 - Register</title>
 </head>
-<body>
-    <form method="post" th:action="@{/register/new-user}">
-        <input placeholder="Username" name="username">
-        <input placeholder="Password" name="password">
-        <input placeholder="First Name" name="firstName">
-        <input placeholder="Last Name" name="lastName">
-        <input placeholder="Email" name="email">
-        <button type="submit">Submit</button>
-    </form>
+<body id="registerBody">
+    <div class="homeButton">
+        <a id=homeLink th:href="@{/}">
+            <img src="/images/home.png" alt="home" title="Return to homepage">
+        </a>
+    </div>
+    <div id="h1RegisterContainer">
+        <h1 id="h1Register">Create an account...</h1>
+    </div>
+    <div id="registerFormContainer">
+        <form id="registerForm" method="post" th:action="@{/register/new-user}">
+            <input type="text" placeholder="Username" name="username" minlength="4" required>
+            <input type="password" placeholder="Password" name="password" minlength="4" required>
+            <input type="text" placeholder="First Name" name="firstName" required>
+            <input type="text" placeholder="Last Name" name="lastName" required>
+            <input type="email" placeholder="Email" name="email" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div id="errorRegisterContainer">
+        <p id="errorRegister" th:if="${error}" th:text="${error}"></p>
+    </div>
+    <div id="loginLinkContainer">
+        <p id="loginLinkText">Already have an account? <a id="loginLink" th:href="@{/login}">Log in here</a>.</p>
+    </div>
 </body>
 </html>
