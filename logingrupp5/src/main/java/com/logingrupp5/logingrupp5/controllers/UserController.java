@@ -3,7 +3,6 @@ package com.logingrupp5.logingrupp5.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.logingrupp5.logingrupp5.model.User;
 import com.logingrupp5.logingrupp5.repository.UserRepository;
@@ -25,7 +24,6 @@ public class UserController {
     public String registerUser() {
         return "/register";
     }
-    
 
     @PostMapping("/register/new-user")
     public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("email") String email) {
