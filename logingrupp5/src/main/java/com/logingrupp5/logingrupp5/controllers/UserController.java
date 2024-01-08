@@ -61,4 +61,10 @@ public class UserController {
 
         return "redirect:/register";
     }
+
+    @GetMapping("/myOrders")
+    public String myOrdersPage() {
+        return "myOrders";
+    }
+    
 }
