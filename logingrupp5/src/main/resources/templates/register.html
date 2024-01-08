@@ -12,6 +12,12 @@
             <img src="/images/home.png" alt="home" title="Return to homepage">
         </a>
     </div>
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <a href="/logout"><button>Logga ut</button></a>
+      </div>
+      <div th:if="${#authorization.expression('isAnonymous()')}">
+        <a href="/login"><button>Logga in</button></a>
+      </div>
     <div id="h1RegisterContainer">
         <h1 id="h1Register">Create an account...</h1>
     </div>
