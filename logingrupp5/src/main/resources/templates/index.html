@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Grupp 5</title>
   </head>
+  
   <body>
     <h1>Welcome</h1>
     <a href="/register"><button>Register</button></a>
@@ -12,11 +13,29 @@
     <div th:if="${#authorization.expression('isAuthenticated()')}">
       <a href="/logout"><button>Logga ut</button></a>
       <a href="/myOrders"><button>My orders</button></a>
-      <a href="/productPage"><button>Product Info</button></a>
     </div>
 
     <div th:if="${#authorization.expression('isAnonymous()')}">
       <a href="/login"><button>Logga in</button></a>
     </div>
+
+   
+    <div th:each="product : ${products}" >
+      <div>
+        <h3><span th:text="${product.productName}"></span><br /></h3>
+
+        <pre><span th:text="${product.productDescription}"></span></pre>
+
+        <span th:text="${product.productPrice}"></span>
+        
+          
+
+        
+
+        
+        <a th:href="@{productPage(id=${product.id})}"><button>Till Produkt</button></a>
+      </div>
+    </div>
+
   </body>
 </html>
