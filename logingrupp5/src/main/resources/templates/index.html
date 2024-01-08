@@ -12,6 +12,7 @@
     <div th:if="${#authorization.expression('isAuthenticated()')}">
       <a href="/logout"><button>Logga ut</button></a>
       <a href="/myOrders"><button>My orders</button></a>
+      <a href="/productPage"><button>Product Info</button></a>
     </div>
 
     <div th:if="${#authorization.expression('isAnonymous()')}">

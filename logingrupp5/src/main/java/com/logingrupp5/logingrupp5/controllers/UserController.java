@@ -66,5 +66,10 @@ public class UserController {
     public String myOrdersPage() {
         return "myOrders";
     }
+
+    @GetMapping("/productPage")
+    public String myProductPage() {
+        return "productPage";
+    }
     
 }
