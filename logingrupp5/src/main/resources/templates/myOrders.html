@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Grupp 5 - Shopping Cart</title>
+</head>
+<body>
+    <div class="homeButton">
+        <a id=homeLink th:href="@{/}">
+            <img src="/images/home.png" alt="home" title="Return to homepage">
+        </a>
+    </div>
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <a href="/logout"><button>Logga ut</button></a>
+      </div>
+    <h1>Shopping Cart</h1>
+</body>
+</html>
