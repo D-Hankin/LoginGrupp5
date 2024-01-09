@@ -21,10 +21,11 @@ public class ProductController {
 
     }
 
-    @GetMapping("/productPage/{productId}")
-        public String getProductInfo(@PathVariable int productId, Model model, Authentication authentication) {
+    @GetMapping("/productPage/{id}")
+        public String getProductInfo(@PathVariable("id") int productId, Model model, Authentication authentication) {
+            System.out.println(productId);
             Product product = productRepository.findById(productId)
-            .orElseThrow(() -> new NoSuchElementException("No product found by ID" + productId));
+            .orElseThrow(() -> new NoSuchElementException("No product found by ID!!!!" + productId));
             model.addAttribute("product", product);
             model.addAttribute("authentication", authentication!= null && authentication.isAuthenticated());
             return "productPage";
