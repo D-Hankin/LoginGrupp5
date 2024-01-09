@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/script/indexScript.js" defer></script>
     <title>Product details</title>
 </head>
 <body>
@@ -10,14 +11,21 @@
         <a id=homeLink th:href="@{/}">
             <img src="/images/home.png" alt="home" title="Return to homepage">
         </a>
+        <div th:if="${#authorization.expression('isAnonymous()')}">
+            <a href="/login"><button>Logga in</button></a>
+        </div>
         <div th:if="${#authorization.expression('isAuthenticated()')}">
             <a href="/logout"><button>Logga ut</button></a>
-          </div>
+        </div>
+    </div>
     <h1>Product information</h1>
 
     <div th:if="${product != null}">
         
-        <h2 th:text="${product.productName}"></h2>
+        <h2 class="productName" th:text="${product.productName}"></h2>
+        <div id="productImageContainer">
+            <img class="productImage" src="">
+        </div>
         <p th:text="${product.productDescription}"></p>
         <p th:text="${product.productPrice}"></p>
 
