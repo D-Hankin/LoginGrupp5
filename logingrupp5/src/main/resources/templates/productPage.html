@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/script/indexScript.js" defer></script>
+    <link rel="stylesheet" href="../stylesheets/style.css">
     <title>Product details</title>
 </head>
 <body>
@@ -27,9 +28,9 @@
             <img class="productImage" src="">
         </div>
         <p th:text="${product.productDescription}"></p>
-        <p th:text="${product.productPrice}"></p>
+        <p th:text="${'SEK' + product.productPrice}"></p>
 
-        <div th:if="${authenticated}">
+        <div th:if="${authentication}">
             <form th:action="@{'/addToCart/' + ${product.id}}" method="post">
                 <button type="submit">Add to cart</button>
             </form>

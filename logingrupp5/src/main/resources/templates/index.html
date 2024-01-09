@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="/script/indexScript.js" defer></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
     <title>Login Grupp 5</title>
   </head>
   
@@ -25,7 +26,7 @@
       <div>
         <h3><span class="productName" th:text="${product.productName}"></span><br /></h3>
         <div id="productImageContainer">
-            <img class="productImage" src="">
+            <a th:href="@{/productPage/{id}(id=${product.id})}"><img class="productImage" src=""></a>
         </div>
         <a th:href="@{/productPage/{id}(id=${product.id})}"><button>Till Produkt</button></a>
       </div>
