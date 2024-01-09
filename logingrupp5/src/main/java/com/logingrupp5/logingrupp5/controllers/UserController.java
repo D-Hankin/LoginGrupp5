@@ -42,16 +42,24 @@ public class UserController {
             return "register";
             
         } else {
-            User user = new User();
-            String encryptedPassword = bcryptEncoder.encode(password);
-            user.setUsername(username);
-            user.setPassword(encryptedPassword);
-            user.setFirstName(firstName);
-            user.setLastName(lastName);
-            user.setEmail(email);
-            userRepository.save(user);
-            
-            return "redirect:/";
+            try {
+                User user = new User();
+                String encryptedPassword = bcryptEncoder.encode(password);
+                user.setUsername(username);
+                user.setPassword(encryptedPassword);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setEmail(email);
+                userRepository.save(user);
+
+                return "redirect:/";
+
+            } catch (Exception e) {
+                
+                model.addAttribute("error", "OOPS! That username is already taken. Please try again!");
+
+                return "register";
+            }
         }
     }
     

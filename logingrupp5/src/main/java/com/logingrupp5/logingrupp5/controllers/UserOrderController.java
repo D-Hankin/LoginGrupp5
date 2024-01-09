@@ -7,20 +7,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.logingrupp5.logingrupp5.model.Order;
-import com.logingrupp5.logingrupp5.repository.OrderRepository;
+import com.logingrupp5.logingrupp5.model.UserOrder;
+import com.logingrupp5.logingrupp5.repository.UserOrderRepository;
 
 @Controller
-public class OrderController {
+public class UserOrderController {
 
     @Autowired
-    private final OrderRepository orderRepository;
+    private final UserOrderRepository orderRepository;
 
-    public OrderController(OrderRepository orderRepository) {
+    public UserOrderController(UserOrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
-
-    private String username;
     
     @PostMapping("/addToCart/{productId}/{productName}")
     public String addItem(@PathVariable("productId") int productId, @PathVariable("productName") String productName, Model model, Authentication authentication) {
@@ -28,12 +26,10 @@ public class OrderController {
         model.addAttribute("authentication", authentication);
         if (authentication != null && authentication.isAuthenticated()) {
 
-            Order order = new Order();
-            order.setUsername(authentication.getName());
-            order.setProductName(productName);
-            orderRepository.save(order);
-
-            System.out.println("User: " + username);
+            UserOrder userOrder = new UserOrder();
+            userOrder.setUsername(authentication.getName());
+            userOrder.setProductName(productName);
+            orderRepository.save(userOrder);
         }
 
         return "redirect:/productPage/{productId}";
