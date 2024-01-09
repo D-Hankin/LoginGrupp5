@@ -24,11 +24,7 @@ public class IndexController {
     public String index(Model model) {
 
          model.addAttribute("products", productRepository.findAll());
-        
 
-        
-       
-        
         return "index";
     }
 
