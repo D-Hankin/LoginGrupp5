@@ -12,10 +12,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderId;
     private String username;
-
-    public Order(int orderId) {
-        this.orderId = orderId;
-    }
+    private String productName;
 
     public int getOrderId() {
         return orderId;
@@ -23,6 +20,22 @@ public class Order {
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     } 
 
     
