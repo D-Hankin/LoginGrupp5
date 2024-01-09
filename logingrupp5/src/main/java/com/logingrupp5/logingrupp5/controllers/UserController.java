@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.logingrupp5.logingrupp5.model.User;
 import com.logingrupp5.logingrupp5.repository.UserRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -65,6 +66,13 @@ public class UserController {
     @GetMapping("/myOrders")
     public String myOrdersPage() {
         return "myOrders";
+    }
+
+    @GetMapping("/user/{username}")
+    public String userIndex(@PathVariable String username, Model model) {
+        System.out.println(username);
+        
+        return "redirect:/";
     }
     
 }

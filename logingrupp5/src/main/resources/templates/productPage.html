@@ -31,7 +31,7 @@
         <p th:text="${'SEK' + product.productPrice}"></p>
 
         <div th:if="${authentication}">
-            <form th:action="@{'/addToCart/' + ${product.id}}" method="post">
+            <form th:action="@{/addToCart/{productId}/{productName}(productId=${product.id}, productName=${product.productName})}" method="post">
                 <button type="submit">Add to cart</button>
             </form>
         </div>
