@@ -33,7 +33,7 @@
                     <td th:text="${item.productName}"></td>
                     <td th:text="${item.product.productPrice + ' SEK'}"></td>
                     <td th:text="${'x ' + item.quantity}"></td>
-                    <td th:text="${item.totalPrice}"></td>
+                    <td th:text="${item.totalPrice + ' SEK'}"></td>
                 </tr>
             </tbody>
             <tfoot>
@@ -41,7 +41,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td th:text="${grandTotal}" style="text-decoration: underline;"></td>
+                    <td th:text="${grandTotal + ' SEK'}" style="text-decoration: underline;"></td>
                 </tr>
             </tfoot>
         </table>
