@@ -18,5 +18,36 @@
       </div>
     <h1>Shopping Cart</h1>
     <h2 th:text="${'Current order list for ' + username}"></h2>
+    <div id="ordersTableContainer">
+        <table id="ordersTable">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody th:each="item : ${userOrders}">
+                <tr>
+                    <td th:text="${item.productName}"></td>
+                    <td th:text="${item.product.productPrice + ' SEK'}"></td>
+                    <td th:text="${'x ' + item.quantity}"></td>
+                    <td th:text="${item.totalPrice}"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td th:text="${grandTotal}" style="text-decoration: underline;"></td>
+                </tr>
+            </tfoot>
+        </table>
+        <form id="emptyCartForm" method="post" th:action="@{/myOrders/empty-cart/{username}(username=${username})}">
+            <button>Empty Cart</button>
+        </form>
+    </div>
 </body>
 </html>

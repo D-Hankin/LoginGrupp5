@@ -22,7 +22,7 @@
       <a href="/login"><button>Logga in</button></a>
     </div>
   </nav>
-    <div class="productContainer" th:each="product : ${products}" >
+    <div class="productContainer" th:each="product : ${products}">
       <div>
         <h3><span class="productName" th:text="${product.productName}"></span><br /></h3>
         <div id="productImageContainer">
