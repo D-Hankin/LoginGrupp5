@@ -58,7 +58,7 @@ public class UserController {
                 
                 model.addAttribute("error", "OOPS! That username is already taken. Please try again!");
 
-                return "register";
+                return "redirect:/register";
             }
         }
     }
