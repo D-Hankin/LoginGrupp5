@@ -71,11 +71,6 @@ public class UserController {
         return "redirect:/register";
     }
 
-    @GetMapping("/myOrders")
-    public String myOrdersPage() {
-        return "myOrders";
-    }
-
     @GetMapping("/user/{username}")
     public String userIndex(@PathVariable String username, Model model) {
         System.out.println(username);
