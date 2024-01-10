@@ -21,8 +21,8 @@ public class ProductController {
 
     }
 
-    @GetMapping("/productPage/{id}")
-        public String getProductInfo(@PathVariable("id") int productId, Model model, Authentication authentication) {
+    @GetMapping("/productPage/{productId}")
+        public String getProductInfo(@PathVariable("productId") int productId, Model model, Authentication authentication) {
             
             Product product = productRepository.findById(productId)
             .orElseThrow(() -> new NoSuchElementException("No product found by ID!!!!" + productId));

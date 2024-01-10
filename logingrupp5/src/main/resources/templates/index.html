@@ -26,10 +26,10 @@
       <div>
         <h3><span class="productName" th:text="${product.productName}"></span><br /></h3>
         <div id="productImageContainer">
-            <a th:href="@{/productPage/{id}(id=${product.id})}"><img class="productImage" src=""></a>
+            <a th:href="@{/productPage/{productId}(productId=${product.id})}"><img class="productImage" src=""></a>
         </div>
         <div class="buttonContainer">
-        <a th:href="@{/productPage/{id}(id=${product.id})}"><button>Till produkt</button></a>
+        <a th:href="@{/productPage/{productId}(productId=${product.id})}"><button>Till produkt</button></a>
       </div>
     </div>
     </div>

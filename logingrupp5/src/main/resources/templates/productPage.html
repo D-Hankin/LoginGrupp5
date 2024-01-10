@@ -27,7 +27,7 @@
         </div>
       </nav>
     <div class="productContainer">
-    <div th:if="${product != null}">    
+      <div th:if="${product != null}">    
         <h2 class="productName" th:text="${product.productName}"></h2>
         <div id="productImageContainer">
             <img class="productImage" src="">
@@ -39,7 +39,7 @@
     </div>
         <div th:if="${authentication}">
             <div class="buttonContainer">
-            <form th:action="@{'/addToCart/' + ${product.id}}" method="post">
+            <form th:action="@{/addToCart/{productId}/{productName}(productId=${product.id}, productName=${product.productName})}" method="post">
                 <button type="submit">Add to cart</button>
             </form>
         </div>
