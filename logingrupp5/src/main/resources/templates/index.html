@@ -7,29 +7,31 @@
     <link rel="stylesheet" href="stylesheets/style.css">
     <title>Login Grupp 5</title>
   </head>
-  
   <body>
-    <h1>Welcome</h1>
+    <header>
+    <h1>Welcome to the</h1>
+    <img src="/images/logo.png" alt="logo" title="logo">
+  </header>
+  <nav>
     <a href="/register"><button>Register</button></a>
-
     <div th:if="${#authorization.expression('isAuthenticated()')}">
       <a href="/logout"><button>Logga ut</button></a>
       <a href="/myOrders"><button>My orders</button></a>
     </div>
-
     <div th:if="${#authorization.expression('isAnonymous()')}">
       <a href="/login"><button>Logga in</button></a>
     </div>
-
-   
-    <div th:each="product : ${products}" >
+  </nav>
+    <div class="productContainer" th:each="product : ${products}" >
       <div>
         <h3><span class="productName" th:text="${product.productName}"></span><br /></h3>
         <div id="productImageContainer">
             <a th:href="@{/productPage/{id}(id=${product.id})}"><img class="productImage" src=""></a>
         </div>
-        <a th:href="@{/productPage/{id}(id=${product.id})}"><button>Till Produkt</button></a>
+        <div class="buttonContainer">
+        <a th:href="@{/productPage/{id}(id=${product.id})}"><button>Till produkt</button></a>
       </div>
+    </div>
     </div>
 
   </body>

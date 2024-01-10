@@ -1,0 +1,130 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    font-style: italic;
+    font-size: 30px;
+    text-align: center;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 4px;
+    border-bottom: solid rgb(12, 8, 45);
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 8px;
+    margin: 5px;
+    background-color: #3e5374;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.productContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+#productImageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 18px;
+}
+
+h3 {
+    text-align: center;
+    font-size: 18px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+p {
+    text-align: center;
+    max-width: 300px;
+    margin: auto;
+    padding-top: 10px;
+    
+}
+
+#h1RegisterContainer {
+    text-align: center;
+    margin-top: 20px;
+    background-color: white;
+    border-bottom:  solid #333;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#h1Register {
+    font-size: 28px;
+    color: #333;
+}
+
+#registerFormContainer {
+    margin-top: 20px;
+}
+
+#registerForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#loginLinkContainer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#loginLink {
+    color: #3e5374;
+    font-size: 14px;
+}
+
+#loginLink:hover {
+    text-decoration: underline;
+    color: #4285f4;
+}
+
+h4 {
+  text-align: center;
+}
