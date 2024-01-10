@@ -32,10 +32,17 @@ public class UserOrderController {
         model.addAttribute("authentication", authentication);
         if (authentication != null && authentication.isAuthenticated()) {
 
-            UserOrder userOrder = new UserOrder();
-            userOrder.setUsername(authentication.getName());
-            userOrder.setProductName(productName);
-            orderRepository.save(userOrder);
+            if(orderRepository.checkProductQuantity(authentication.getName(), productName) > 0) {
+                orderRepository.increaseProductQuantity(authentication.getName(), productName);
+                System.out.println(orderRepository.checkProductQuantity(authentication.getName(), productName));
+
+            } else {
+                UserOrder userOrder = new UserOrder();
+                userOrder.setUsername(authentication.getName());
+                userOrder.setProductName(productName);
+                userOrder.setQuantity(1);
+                orderRepository.save(userOrder);
+            }
         }
 
         return "redirect:/productPage/{productId}";

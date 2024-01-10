@@ -13,6 +13,7 @@ public class UserOrder {
     private int orderId;
     private String username;
     private String productName;
+    private int quantity;
 
     public int getOrderId() {
         return orderId;
@@ -36,6 +37,14 @@ public class UserOrder {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     } 
 
     
