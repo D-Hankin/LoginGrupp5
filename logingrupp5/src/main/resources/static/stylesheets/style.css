@@ -128,3 +128,42 @@ input {
 h4 {
   text-align: center;
 }
+
+#ordersTableContainer {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+#ordersTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#ordersTable th,
+#ordersTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#ordersTable th {
+    background-color: #3e5374;
+    color: #fff;
+}
+
+#emptyCartForm button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+#emptyCartForm button:hover {
+    background-color: #c0392b;
+}
