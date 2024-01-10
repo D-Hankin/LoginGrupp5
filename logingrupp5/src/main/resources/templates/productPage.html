@@ -12,32 +12,41 @@
         <a id=homeLink th:href="@{/}">
             <img src="/images/home.png" alt="home" title="Return to homepage">
         </a>
+    </div>
+    <header>
+    <h1>Product information</h1>
+</header>
+    <nav>
+        <a href="/register"><button>Register</button></a>
+          <a href="/myOrders"><button>My orders</button></a>
         <div th:if="${#authorization.expression('isAnonymous()')}">
             <a href="/login"><button>Logga in</button></a>
         </div>
         <div th:if="${#authorization.expression('isAuthenticated()')}">
             <a href="/logout"><button>Logga ut</button></a>
         </div>
-    </div>
-    <h1>Product information</h1>
-
-    <div th:if="${product != null}">
-        
+      </nav>
+    <div class="productContainer">
+      <div th:if="${product != null}">    
         <h2 class="productName" th:text="${product.productName}"></h2>
         <div id="productImageContainer">
             <img class="productImage" src="">
         </div>
+        <h4>Produktbeskrivning:</h4>
         <p th:text="${product.productDescription}"></p>
-        <p th:text="${'SEK' + product.productPrice}"></p>
-
+        <h4>Pris:</h4>
+        <p th:text="${product.productPrice + ' ' + 'SEK'  }"></p>
+    </div>
         <div th:if="${authentication}">
+            <div class="buttonContainer">
             <form th:action="@{/addToCart/{productId}/{productName}(productId=${product.id}, productName=${product.productName})}" method="post">
                 <button type="submit">Add to cart</button>
             </form>
         </div>
     </div>
-    <div th:if="${product == null}">
-        <p>Product not found</p>
-    </div>
+</div>
+<div th:if="${product == null}">
+    <p>Product not found</p>
+</div>
 </body>
 </html>
