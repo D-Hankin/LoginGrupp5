@@ -6,3 +6,4 @@ for (let i = 0; i < productName.length; i++) {
     productNameText.push(productName[i].innerText);
     productImageClass[i].src = ("/images/" + productName[i].innerText.toLowerCase() + ".jpg");
 }
+
