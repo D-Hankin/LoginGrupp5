@@ -1,6 +1,7 @@
 package com.logingrupp5.logingrupp5.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class UserController {
 
+    int error = 0;
+
     @Autowired
     private final UserRepository userRepository;
 
@@ -27,14 +30,19 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String registerUser() {
+    public String registerUser(Model model) {
+
+        if (error == 1) {
+            model.addAttribute("error", "OOPS! An error has occurred. Go back and try again!");
+            error = 0;
+        }
 
         return "/register";
     }
 
     @PostMapping("/register/new-user")
-    public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("email") String email, Model model) {
-        
+    public String registerUser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName, @RequestParam("email") String email, Model model) throws InterruptedException {
+
         if (username.trim().isEmpty() || password.trim().isEmpty() || firstName.trim().isEmpty() || lastName.trim().isEmpty() || email.trim().isEmpty()) {
             
             model.addAttribute("error", "OOPS! You need to fill in all the fields. Please try again!");
@@ -56,9 +64,9 @@ public class UserController {
 
             } catch (Exception e) {
                 
-                model.addAttribute("error", "OOPS! That username is already taken. Please try again!");
+                error = 1;
 
-                return "register";
+                return "redirect:/register";
             }
         }
     }

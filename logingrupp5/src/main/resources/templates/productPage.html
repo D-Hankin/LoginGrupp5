@@ -20,10 +20,10 @@
         <a href="/register"><button>Register</button></a>
           <a href="/myOrders"><button>My orders</button></a>
         <div th:if="${#authorization.expression('isAnonymous()')}">
-            <a href="/login"><button>Logga in</button></a>
+            <a href="/login"><button>Log in</button></a>
         </div>
         <div th:if="${#authorization.expression('isAuthenticated()')}">
-            <a href="/logout"><button>Logga ut</button></a>
+            <a href="/logout"><button>Log out</button></a>
         </div>
       </nav>
     <div class="productContainer">
@@ -32,9 +32,9 @@
         <div id="productImageContainer">
             <img class="productImage" src="">
         </div>
-        <h4>Produktbeskrivning:</h4>
+        <h4>Product description:</h4>
         <p th:text="${product.productDescription}"></p>
-        <h4>Pris:</h4>
+        <h4>Price:</h4>
         <p th:text="${product.productPrice + ' ' + 'SEK'  }"></p>
     </div>
         <div th:if="${authentication}">

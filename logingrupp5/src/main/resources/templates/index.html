@@ -24,21 +24,21 @@
   <nav>
     <a href="/register"><button>Register</button></a>
     <div th:if="${#authorization.expression('isAuthenticated()')}">
-      <a href="/logout"><button>Logga ut</button></a>
+      <a href="/logout"><button>Log out</button></a>
       <a href="/myOrders"><button>My orders</button></a>
     </div>
     <div th:if="${#authorization.expression('isAnonymous()')}">
-      <a href="/login"><button>Logga in</button></a>
+      <a href="/login"><button>Log in</button></a>
     </div>
   </nav>
-    <div class="productContainer" th:each="product : ${products}" >
+    <div class="productContainer" th:each="product : ${products}">
       <div>
         <h3><span class="productName" th:text="${product.productName}"></span><br /></h3>
         <div id="productImageContainer">
             <a th:href="@{/productPage/{productId}(productId=${product.id})}"><img class="productImage" src=""></a>
         </div>
         <div class="buttonContainer">
-        <a th:href="@{/productPage/{productId}(productId=${product.id})}"><button>Till produkt</button></a>
+        <a th:href="@{/productPage/{productId}(productId=${product.id})}"><button>To product</button></a>
       </div>
     </div>
     </div>
