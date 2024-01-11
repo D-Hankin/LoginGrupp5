@@ -9,8 +9,17 @@
   </head>
   <body>
     <header>
-    <h1>Welcome to the</h1>
-    <img src="/images/logo.png" alt="logo" title="logo">
+
+      <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <h1 th:text="${'Welcome' + ' ' + username + ' ' + 'to' + ' ' + 'the'}"></h1>
+        <img src="/images/logo.png" alt="logo" title="logo">
+      </div>
+      <div th:if="${#authorization.expression('isAnonymous()')}">
+        <h1>Welcome to the</h1>
+        <img src="/images/logo.png" alt="logo" title="logo">
+      </div>
+    
+
   </header>
   <nav>
     <a href="/register"><button>Register</button></a>
