@@ -19,7 +19,7 @@
     <nav>
         <a href="/register"><button>Register</button></a>
         <div th:if="${#authorization.expression('isAuthenticated()')}">
-          <a href="/logout"><button>Log ut</button></a>
+          <a href="/logout"><button>Log out</button></a>
           <a href="/myOrders"><button>My orders</button></a>
         </div>
         <div th:if="${#authorization.expression('isAnonymous()')}">
@@ -40,7 +40,7 @@
     <div id="errorRegisterContainer">
         <p id="errorRegister" th:if="${error}" th:text="${error}"></p>
     </div>
-    <div id="loginLinkContainer">
+    <div id="loginLinkContainer" th:if="${#authorization.expression('isAnonymous()')}">
         <p id="loginLinkText">Already have an account? <a id="loginLink" th:href="@{/login}">Log in here</a>.</p>
     </div>
 </body>
