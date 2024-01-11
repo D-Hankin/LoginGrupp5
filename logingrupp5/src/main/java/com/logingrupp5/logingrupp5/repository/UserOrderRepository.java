@@ -22,7 +22,19 @@ public interface UserOrderRepository extends CrudRepository<UserOrder, Integer>{
 
     @Transactional
     @Modifying
+    @Query("UPDATE UserOrder u SET u.quantity = u.quantity - 1 WHERE u.username = ?1 AND u.productName = ?2")
+    void decreaseProductQuantity(String name, String productName);
+
+    @Transactional
+    @Modifying
     @Query("DELETE FROM UserOrder u WHERE u.username = ?1")
     void deleteAllByUsername(String username);
+
+    @Transactional
+    @Modifying
+    @Query("DELETE FROM UserOrder u WHERE u.quantity = 0")
+    void checkForZero();
+
+    
 
 } 

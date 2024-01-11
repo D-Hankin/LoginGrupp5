@@ -42,7 +42,19 @@
                 <tr>
                     <td><a th:text="${item.productName}" th:href="@{/productPage/{productId}(productId=${item.product.id})}"></a></td>
                     <td th:text="${item.product.productPrice + ' SEK'}"></td>
-                    <td><img src="/images/plusIcon.png"><span th:text="${ 'x ' + item.quantity + ' '}"></span><img src="/images/minusIcon.png"></td>
+                    <td>
+                        <form class="changeQuantityForm" method="post" th:action="@{/myOrders/increase-quantity/{productName}(productName=${item.productName})}">
+                            <button class="incDecButton">
+                                <img src="/images/plusIcon.png" alt="increase quantity" title="increase quantity">
+                            </button>
+                        </form>
+                        <span th:text="${ 'x ' + item.quantity + ' '}"></span>
+                        <form class="changeQuantityForm" method="post" th:action="@{/myOrders/decrease-quantity/{productName}(productName=${item.productName})}">
+                            <button class="incDecButton">
+                                <img src="/images/minusIcon.png" alt="decrease quantity" title="decrease quantity">
+                            </button>
+                        </form>
+                    </td>
                     <td th:text="${item.totalPrice + ' SEK'}"></td>
                 </tr>
             </tbody>

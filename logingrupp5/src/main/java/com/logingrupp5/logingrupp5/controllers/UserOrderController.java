@@ -15,34 +15,26 @@ import com.logingrupp5.logingrupp5.repository.UserOrderRepository;
 import com.logingrupp5.logingrupp5.repository.UserRepository;
 
 
+
 @Controller
 public class UserOrderController {
 
     @Autowired
     private final UserOrderRepository orderRepository;
 
-    @Autowired
-    private final UserRepository userRepository;
-
-    @Autowired 
-    private final ProductRepository productRepository;
-
     public UserOrderController(UserOrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository) {
         this.orderRepository = orderRepository;
-        this.userRepository = userRepository;
-        this.productRepository = productRepository;
     }
     
     @PostMapping("/addToCart/{productId}/{productName}")
     public String addItem(@PathVariable("productId") int productId, @PathVariable("productName") String productName, Model model, Authentication authentication) {
-        System.out.println("item added: " + productName);
+        
         model.addAttribute("authentication", authentication);
         if (authentication != null && authentication.isAuthenticated()) {
 
             if(orderRepository.checkProductQuantity(authentication.getName(), productName) > 0) {
+
                 orderRepository.increaseProductQuantity(authentication.getName(), productName);
-                //orderRepository.updateTotalPrice()
-                System.out.println(orderRepository.checkProductQuantity(authentication.getName(), productName));
 
             } else {
                 UserOrder userOrder = new UserOrder();
@@ -59,6 +51,8 @@ public class UserOrderController {
     @GetMapping("/myOrders")
     public String myOrdersPage(Authentication authentication, Model model) {
 
+        orderRepository.checkForZero();
+
         List<UserOrder> userOrders = orderRepository.findByUsername(authentication.getName());
         model.addAttribute("username", authentication.getName());
         model.addAttribute("userOrders", userOrders);
@@ -67,13 +61,11 @@ public class UserOrderController {
         for (UserOrder item : userOrders) {
             if (item.getProduct() != null && item.getProduct().getProductPrice() != null) {
                 item.setTotalPrice(item.getProduct().getProductPrice().multiply(BigDecimal.valueOf(item.getQuantity())));
-                System.out.println(item.getTotalPrice());
                 grandTotal = grandTotal.add(item.getTotalPrice());
             }
         }
         orderRepository.saveAll(userOrders);
         model.addAttribute("grandTotal", grandTotal);
-
 
         return "myOrders";
     }
@@ -81,10 +73,27 @@ public class UserOrderController {
     @PostMapping("/myOrders/empty-cart/{username}")
     public String emptyCart(@PathVariable("username") String username) {
 
-        System.out.println(username);
         orderRepository.deleteAllByUsername(username);
 
         return "redirect:/myOrders";
     }
+
+    @PostMapping("/myOrders/increase-quantity/{productName}")
+    public String increaseQuantityButton(@PathVariable String productName, Authentication authentication) {
+
+        orderRepository.increaseProductQuantity(authentication.getName(), productName);
+
+        return "redirect:/myOrders";
+    }
+
+    @PostMapping("/myOrders/decrease-quantity/{productName}")
+    public String decreaseQuantity(@PathVariable String productName, Authentication authentication) {
+
+        orderRepository.decreaseProductQuantity(authentication.getName(), productName);
+
+        return "redirect:/myOrders";
+    }
+    
+    
     
 }
