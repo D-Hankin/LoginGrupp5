@@ -40,9 +40,9 @@
             </thead>
             <tbody th:each="item : ${userOrders}">
                 <tr>
-                    <td th:text="${item.productName}"></td>
+                    <td><a th:text="${item.productName}" th:href="@{/productPage/{productId}(productId=${item.product.id})}"></a></td>
                     <td th:text="${item.product.productPrice + ' SEK'}"></td>
-                    <td th:text="${'x ' + item.quantity}"></td>
+                    <td><img src="/images/plusIcon.png"><span th:text="${ 'x ' + item.quantity + ' '}"></span><img src="/images/minusIcon.png"></td>
                     <td th:text="${item.totalPrice + ' SEK'}"></td>
                 </tr>
             </tbody>
